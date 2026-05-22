@@ -3,6 +3,8 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
 import { MenuNav } from '@/components/nav/MenuNav'
+import { RegistradorSW } from '@/components/pwa/RegistradorSW'
+import { ModalInstalacion } from '@/components/pwa/ModalInstalacion'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 
@@ -41,6 +43,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <Toaster position="bottom-center" richColors />
+        <RegistradorSW/>
+        <ModalInstalacion/>
       </body>
     </html>
   )

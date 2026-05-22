@@ -55,3 +55,12 @@ declare global {
     static getSupportedFormats(): Promise<string[]>
   }
 }
+
+export interface BeforeInstallPromptEvent extends Event{
+  prompt(): Promise<void>
+  userChoice: Promise<{outcome: 'acepted' | 'dimissed'}>
+}
+
+interface WindowEventMap{
+  beforeinstallprompt: BeforeInstallPromptEvent
+}
