@@ -54,13 +54,14 @@ declare global {
     ): Promise<Array<{ rawValue: string; format: string }>>
     static getSupportedFormats(): Promise<string[]>
   }
-}
-
-export interface BeforeInstallPromptEvent extends Event{
-  prompt(): Promise<void>
-  userChoice: Promise<{outcome: 'acepted' | 'dimissed'}>
-}
-
-interface WindowEventMap{
-  beforeinstallprompt: BeforeInstallPromptEvent
+  
+  export interface BeforeInstallPromptEvent extends Event{
+    prompt(): Promise<void>
+    userChoice: Promise<{outcome: 'accepted' | 'dimissed'}>
+  }
+  
+  interface WindowEventMap{
+    beforeinstallprompt: BeforeInstallPromptEvent
+  }
+  
 }
