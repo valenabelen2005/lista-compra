@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --font-geist: var(--font-geist);
+}
+
+/* Estilos globales de la aplicación */
+body {
+  font-family: var(--font-geist, Arial, Helvetica, sans-serif);
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+/* Evitar el rebote de scroll en iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mejorar la selección en dispositivos táctiles */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 999px;
+}

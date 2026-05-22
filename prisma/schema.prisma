@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id        Int        @id @default(autoincrement())
+  nombre    String     @unique
+  articulos Articulo[]
+}
+
+model Tienda {
+  id         Int               @id @default(autoincrement())
+  nombre     String            @unique
+  articulos  Articulo[]
+  listaItems ListaCompraItem[]
+}
+
+model Articulo {
+  id                 Int               @id @default(autoincrement())
+  nombre             String
+  precio             Float             @default(0)
+  cantidadPorDefecto Int               @default(1)
+  categoriaId        Int?
+  tiendaId           Int?
+  apuntado           Boolean           @default(false)
+  codigoBarras       String?
+  creadoEn           DateTime          @default(now())
+  actualizadoEn      DateTime          @updatedAt
+  categoria          Categoria?        @relation(fields: [categoriaId], references: [id])
+  tienda             Tienda?           @relation(fields: [tiendaId], references: [id])
+  listaItems         ListaCompraItem[]
+}
+
+model ListaCompraItem {
+  id         Int      @id @default(autoincrement())
+  articuloId Int
+  tiendaId   Int?
+  cantidad   Int      @default(1)
+  tachado    Boolean  @default(false)
+  creadoEn   DateTime @default(now())
+  articulo   Articulo @relation(fields: [articuloId], references: [id], onDelete: Cascade)
+  tienda     Tienda?  @relation(fields: [tiendaId], references: [id])
+}
